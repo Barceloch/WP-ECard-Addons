@@ -3,6 +3,13 @@
     "description": "Themes, QR codes, vCard downloads and an action bar for ECard - Digital Visiting Card.",
     "type": "wordpress-plugin",
     "license": "GPL-2.0-or-later",
+    "authors": [
+        {
+            "name": "Yunior Barceló",
+            "email": "barceloch@gmail.com",
+            "homepage": "https://github.com/Barceloch"
+        }
+    ],
     "require": {
         "php": ">=7.4",
         "ext-mbstring": "*",
