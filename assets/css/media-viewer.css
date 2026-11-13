@@ -1,0 +1,328 @@
+/**
+ * WP ECard Addons shared media viewers.
+ *
+ * Self-contained styles for the gallery and videos dialogs. Every selector is
+ * scoped under .my-ecard-media-viewer so the viewers render without the theme.
+ */
+
+.my-ecard-media-viewer,
+.my-ecard-media-viewer *,
+.my-ecard-media-viewer *::before,
+.my-ecard-media-viewer *::after {
+	box-sizing: border-box;
+}
+
+.my-ecard-media-viewer {
+	border: 0;
+	padding: 0;
+	background: transparent;
+	color: #fff;
+	width: min(960px, 94vw);
+	max-width: min(960px, 94vw);
+	max-height: 92vh;
+	margin: auto;
+	overflow: visible;
+}
+
+.my-ecard-media-viewer::backdrop {
+	background: rgba(15, 23, 42, .92);
+}
+
+.my-ecard-media-viewer__frame {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	box-sizing: border-box;
+	width: 100%;
+	max-width: 100%;
+	max-height: 92vh;
+	padding: 18px;
+	border-radius: 18px;
+	background: #0f172a;
+	box-shadow: 0 24px 64px rgba(2, 6, 23, .6);
+	overflow: hidden;
+}
+
+.my-ecard-media-viewer__title {
+	margin: 0;
+	padding: 0 56px 0 0;
+	color: #cbd5e1;
+	font-size: .75rem;
+	font-weight: 700;
+	letter-spacing: .08em;
+	line-height: 1.3;
+	text-transform: uppercase;
+	overflow-wrap: anywhere;
+}
+
+.my-ecard-media-viewer__close {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	z-index: 3;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 44px;
+	height: 44px;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	border-radius: 50%;
+	background: rgba(255, 255, 255, .14);
+	color: #fff;
+	font-family: inherit;
+	font-size: 1.65rem;
+	line-height: 1;
+	cursor: pointer;
+	transition: background-color .18s ease;
+}
+
+.my-ecard-media-viewer__close:hover,
+.my-ecard-media-viewer__close:focus-visible {
+	background: rgba(255, 255, 255, .26);
+}
+
+.my-ecard-media-viewer__stage {
+	position: relative;
+	display: flex;
+	flex: 1 1 auto;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	max-width: 100%;
+	min-height: 0;
+}
+
+.my-ecard-media-viewer__stage--video {
+	width: 100%;
+}
+
+.my-ecard-media-viewer__image {
+	display: block;
+	max-width: 100%;
+	max-height: 62vh;
+	border-radius: 10px;
+	object-fit: contain;
+}
+
+.my-ecard-media-viewer__nav {
+	position: absolute;
+	top: calc(50% - 22px);
+	z-index: 2;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 44px;
+	height: 44px;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	border-radius: 50%;
+	background: rgba(255, 255, 255, .16);
+	color: #fff;
+	font-family: inherit;
+	font-size: 1.8rem;
+	line-height: 1;
+	cursor: pointer;
+	transition: background-color .18s ease;
+}
+
+.my-ecard-media-viewer__nav:hover,
+.my-ecard-media-viewer__nav:focus-visible {
+	background: rgba(255, 255, 255, .28);
+}
+
+.my-ecard-media-viewer__nav--prev {
+	left: 8px;
+}
+
+.my-ecard-media-viewer__nav--next {
+	right: 8px;
+}
+
+.my-ecard-media-viewer__nav:disabled {
+	opacity: .35;
+	cursor: default;
+}
+
+.my-ecard-media-viewer__video {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	max-width: 100%;
+	aspect-ratio: 16 / 9;
+	max-height: 62vh;
+	border-radius: 10px;
+	background: #000;
+	overflow: hidden;
+}
+
+.my-ecard-media-viewer__video iframe,
+.my-ecard-media-viewer__video video {
+	display: block;
+	width: 100%;
+	height: 100%;
+	max-width: 100%;
+	max-height: 100%;
+	border: 0;
+}
+
+.my-ecard-media-viewer__video a {
+	display: block;
+	padding: 18px 16px;
+	color: #93c5fd;
+	font-size: .95rem;
+	font-weight: 600;
+	line-height: 1.4;
+	text-align: center;
+	text-decoration: underline;
+	overflow-wrap: anywhere;
+}
+
+.my-ecard-media-viewer__caption {
+	margin: 0;
+	color: #e2e8f0;
+	font-size: .9rem;
+	line-height: 1.4;
+	text-align: center;
+	min-height: 1.2em;
+	overflow-wrap: anywhere;
+}
+
+.my-ecard-media-viewer__counter {
+	margin: 0;
+	color: #94a3b8;
+	font-size: .75rem;
+	line-height: 1.3;
+	text-align: center;
+}
+
+.my-ecard-media-viewer__thumbs {
+	display: flex;
+	flex: 0 0 auto;
+	flex-wrap: nowrap;
+	gap: 8px;
+	width: 100%;
+	max-width: 100%;
+	margin: 0;
+	padding: 2px;
+	list-style: none;
+	overflow-x: auto;
+	overflow-y: hidden;
+}
+
+.my-ecard-media-viewer__thumb {
+	display: block;
+	flex: 0 0 auto;
+	width: 56px;
+	height: 56px;
+	margin: 0;
+	padding: 0;
+	border: 2px solid transparent;
+	border-radius: 8px;
+	background: #1e293b;
+	overflow: hidden;
+	cursor: pointer;
+	transition: border-color .18s ease;
+}
+
+.my-ecard-media-viewer__thumb img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.my-ecard-media-viewer__thumb[aria-current="true"] {
+	border-color: #60a5fa;
+}
+
+.my-ecard-media-viewer__list {
+	display: flex;
+	flex: 0 0 auto;
+	flex-wrap: wrap;
+	gap: 8px;
+	width: 100%;
+	max-width: 100%;
+	max-height: 96px;
+	margin: 0;
+	padding: 2px;
+	list-style: none;
+	overflow-x: hidden;
+	overflow-y: auto;
+}
+
+.my-ecard-media-viewer__video-item {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+	min-height: 44px;
+	max-width: 100%;
+	margin: 0;
+	padding: 8px 12px;
+	border: 1px solid rgba(148, 163, 184, .35);
+	border-radius: 999px;
+	background: rgba(255, 255, 255, .08);
+	color: #e2e8f0;
+	font-family: inherit;
+	font-size: .82rem;
+	line-height: 1.2;
+	text-align: left;
+	cursor: pointer;
+	transition: background-color .18s ease, border-color .18s ease, color .18s ease;
+}
+
+.my-ecard-media-viewer__video-item span {
+	min-width: 0;
+	overflow-wrap: anywhere;
+}
+
+.my-ecard-media-viewer__video-item[aria-current="true"] {
+	border-color: #2563eb;
+	background: #2563eb;
+	color: #fff;
+}
+
+.my-ecard-media-viewer:focus-visible,
+.my-ecard-media-viewer :focus-visible {
+	outline: 3px solid #60a5fa;
+	outline-offset: 2px;
+}
+
+@media (max-width: 480px) {
+	.my-ecard-media-viewer__frame {
+		gap: 8px;
+		padding: 12px;
+	}
+
+	.my-ecard-media-viewer__image,
+	.my-ecard-media-viewer__video {
+		max-height: 50vh;
+	}
+
+	.my-ecard-media-viewer__thumb {
+		width: 48px;
+		height: 48px;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.my-ecard-media-viewer,
+	.my-ecard-media-viewer *,
+	.my-ecard-media-viewer *::before,
+	.my-ecard-media-viewer *::after {
+		transition: none !important;
+		animation: none !important;
+	}
+
+	.my-ecard-media-viewer__nav,
+	.my-ecard-media-viewer__close,
+	.my-ecard-media-viewer__thumb,
+	.my-ecard-media-viewer__video-item {
+		transform: none !important;
+	}
+}

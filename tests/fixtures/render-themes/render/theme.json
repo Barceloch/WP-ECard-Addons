@@ -1,0 +1,8 @@
+{
+    "id": "render",
+    "name": "Render Fixture",
+    "description": "Theme used by the template engine tests.",
+    "version": "1.0.0",
+    "requires_plugin": ">=0.1.0",
+    "template": "template.php"
+}

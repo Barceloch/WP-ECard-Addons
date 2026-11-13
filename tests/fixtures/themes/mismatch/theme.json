@@ -1,0 +1,5 @@
+{
+    "id": "not-the-directory",
+    "name": "Mismatched Fixture",
+    "template": "template.php"
+}

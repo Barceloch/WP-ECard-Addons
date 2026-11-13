@@ -1,0 +1,17 @@
+{
+    "id": "valid",
+    "name": "Valid Fixture",
+    "description": "Fixture theme used by the registry tests.",
+    "version": "1.0.0",
+    "requires_plugin": ">=0.1.0",
+    "template": "template.php",
+    "styles": ["style.css"],
+    "scripts": ["script.js"],
+    "preview": "preview.png",
+    "supports": {
+        "cover": false,
+        "header_height": false,
+        "gallery": true,
+        "videos": true
+    }
+}

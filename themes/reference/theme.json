@@ -1,0 +1,20 @@
+{
+    "id": "reference",
+    "name": "Reference",
+    "description": "Light card with a panoramic cover, optional overlapping avatar, branded contacts and a social grid. Gallery and video content opens from the action bar viewers, never inside the card.",
+    "version": "1.0.0",
+    "requires_plugin": ">=0.1.0",
+    "template": "template.php",
+    "preview": "preview.png",
+    "styles": [
+        "style.css"
+    ],
+    "supports": {
+        "avatar": true,
+        "cover": true,
+        "accent_color": true,
+        "header_height": true,
+        "gallery": false,
+        "videos": false
+    }
+}

@@ -1,0 +1,22 @@
+{
+    "name": "barceloch/wp-ecard-addons",
+    "description": "Themes, QR codes, vCard downloads and an action bar for ECard - Digital Visiting Card.",
+    "type": "wordpress-plugin",
+    "license": "GPL-2.0-or-later",
+    "require": {
+        "php": ">=7.4",
+        "ext-mbstring": "*",
+        "chillerlan/php-qrcode": "^4.4.2"
+    },
+    "config": {
+        "platform": {
+            "php": "7.4.33"
+        },
+        "platform-check": false,
+        "optimize-autoloader": true,
+        "sort-packages": true
+    },
+    "scripts": {
+        "test": "@php tests/run.php"
+    }
+}

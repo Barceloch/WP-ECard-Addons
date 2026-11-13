@@ -1,0 +1,5 @@
+{
+    "id": "no-template",
+    "name": "Missing Template Fixture",
+    "template": "absent.php"
+}

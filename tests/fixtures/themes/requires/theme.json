@@ -1,0 +1,6 @@
+{
+    "id": "requires",
+    "name": "Requires Fixture",
+    "requires_plugin": ">=99.0.0",
+    "template": "template.php"
+}

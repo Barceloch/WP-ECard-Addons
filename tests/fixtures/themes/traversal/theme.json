@@ -1,0 +1,5 @@
+{
+    "id": "traversal",
+    "name": "Traversal Fixture",
+    "template": "../../../wp-config.php"
+}

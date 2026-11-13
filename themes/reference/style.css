@@ -1,0 +1,277 @@
+/**
+ * Reference theme styles.
+ *
+ * Every selector is scoped under .my-ecard-theme-reference so the theme can
+ * never leak into the active WordPress theme or into ECard markup.
+ */
+
+.my-ecard-theme-reference {
+	--my-ecard-reference-accent: #2563eb;
+	--my-ecard-reference-ink: #0f172a;
+	--my-ecard-reference-muted: #64748b;
+	--my-ecard-reference-hero: 220px;
+	box-sizing: border-box;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 100vh;
+	min-height: 100dvh;
+	padding: clamp(0px, 3vw, 40px);
+	background-color: #eff6ff;
+	background-image:
+		radial-gradient(70rem 34rem at 12% -12%, #dbeafe 0%, rgba(219, 234, 254, 0) 62%),
+		radial-gradient(52rem 28rem at 100% 0%, #e0e7ff 0%, rgba(224, 231, 255, 0) 58%),
+		linear-gradient(180deg, #eff6ff 0%, #f8fafc 46%, #ffffff 100%);
+	color: var(--my-ecard-reference-ink);
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+	font-size: 16px;
+	line-height: 1.5;
+	text-align: center;
+	-webkit-font-smoothing: antialiased;
+}
+
+.my-ecard-theme-reference *,
+.my-ecard-theme-reference *::before,
+.my-ecard-theme-reference *::after {
+	box-sizing: inherit;
+}
+
+.my-ecard-theme-reference__card {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	max-width: 460px;
+	margin: 0 auto;
+	overflow: hidden;
+	background-color: #ffffff;
+	border-radius: 28px;
+	box-shadow:
+		0 32px 64px -32px rgba(15, 23, 42, 0.38),
+		0 14px 28px -18px rgba(15, 23, 42, 0.18);
+}
+
+.my-ecard-theme-reference__hero {
+	position: relative;
+	flex: 0 0 auto;
+	width: 100%;
+	height: var(--my-ecard-reference-hero);
+	max-height: 60vh;
+	overflow: hidden;
+	background-color: #1e3a8a;
+	background-image:
+		repeating-linear-gradient(
+			90deg,
+			rgba(255, 255, 255, 0.18) 0,
+			rgba(255, 255, 255, 0.18) 10px,
+			rgba(255, 255, 255, 0) 10px,
+			rgba(255, 255, 255, 0) 42px
+		),
+		linear-gradient(122deg, #1e3a8a 0%, #4338ca 38%, #0ea5e9 100%);
+}
+
+.my-ecard-theme-reference__hero-image {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: center;
+}
+
+.my-ecard-theme-reference__body {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	flex: 1 1 auto;
+	padding: 0 clamp(18px, 5vw, 28px) clamp(20px, 5vw, 28px);
+	background-image: linear-gradient(180deg, #eef5ff 0%, #f9fcff 40%, #ffffff 100%);
+}
+
+.my-ecard-theme-reference__avatar-wrap {
+	position: relative;
+	z-index: 1;
+	margin-top: -58px;
+	margin-bottom: 0;
+}
+
+.my-ecard-theme-reference__avatar {
+	display: block;
+	width: 116px;
+	height: 116px;
+	object-fit: cover;
+	object-position: center;
+	border-radius: 50%;
+	border: 5px solid #ffffff;
+	background-color: #e2e8f0;
+	box-shadow: 0 16px 30px -16px rgba(15, 23, 42, 0.55);
+}
+
+.my-ecard-theme-reference__identity {
+	width: 100%;
+	margin-top: 18px;
+}
+
+.my-ecard-theme-reference__name {
+	margin: 0;
+	color: #0b1220;
+	font-size: clamp(1.25rem, 4.4vw, 1.5rem);
+	font-weight: 700;
+	letter-spacing: -0.01em;
+	line-height: 1.25;
+	overflow-wrap: anywhere;
+}
+
+.my-ecard-theme-reference__designation {
+	margin: 6px 0 0;
+	color: #334155;
+	font-size: clamp(0.9rem, 3.4vw, 1rem);
+	font-weight: 500;
+	overflow-wrap: anywhere;
+}
+
+.my-ecard-theme-reference__company {
+	margin: 4px 0 0;
+	color: var(--my-ecard-reference-muted);
+	font-size: 0.85rem;
+	letter-spacing: 0.01em;
+	overflow-wrap: anywhere;
+}
+
+.my-ecard-theme-reference__contacts {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 14px;
+	margin-top: 22px;
+}
+
+.my-ecard-theme-reference__contact {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 52px;
+	height: 52px;
+	border-radius: 50%;
+	color: #ffffff;
+	font-size: 1.15rem;
+	line-height: 1;
+	text-decoration: none;
+	box-shadow: 0 12px 22px -12px rgba(15, 23, 42, 0.6);
+	transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.my-ecard-theme-reference__contact--phone {
+	background-image: linear-gradient(145deg, #14b8a6 0%, #0d9488 100%);
+}
+
+.my-ecard-theme-reference__contact--email {
+	background-image: linear-gradient(145deg, #3b82f6 0%, #1d4ed8 100%);
+}
+
+.my-ecard-theme-reference__contact--whatsapp {
+	background-image: linear-gradient(145deg, #34d399 0%, #16a34a 100%);
+}
+
+.my-ecard-theme-reference__contact:focus-visible,
+.my-ecard-theme-reference__social-link:focus-visible {
+	outline: 3px solid var(--my-ecard-reference-accent);
+	outline-offset: 3px;
+}
+
+.my-ecard-theme-reference__social {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 14px;
+	width: 100%;
+	max-width: 226px;
+	margin-top: 20px;
+}
+
+.my-ecard-theme-reference__social-link {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 46px;
+	height: 46px;
+	border-radius: 50%;
+	color: #ffffff;
+	font-size: 1.05rem;
+	line-height: 1;
+	text-decoration: none;
+	box-shadow: 0 10px 18px -12px rgba(15, 23, 42, 0.55);
+	transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.my-ecard-theme-reference__social-link--facebook {
+	background-color: #1877f2;
+}
+
+.my-ecard-theme-reference__social-link--instagram {
+	background-image: radial-gradient(
+		circle at 30% 107%,
+		#fdf497 0%,
+		#fdf497 5%,
+		#fd5949 45%,
+		#d6249f 60%,
+		#285aeb 90%
+	);
+}
+
+.my-ecard-theme-reference__social-link--youtube {
+	background-color: #ff0000;
+}
+
+.my-ecard-theme-reference__social-link--twitter {
+	background-color: #1da1f2;
+}
+
+.my-ecard-theme-reference__social-link--linkedin {
+	background-color: #0a66c2;
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.my-ecard-theme-reference__contact:hover,
+	.my-ecard-theme-reference__social-link:hover {
+		transform: translateY(-2px);
+		box-shadow: 0 18px 26px -14px rgba(15, 23, 42, 0.65);
+	}
+}
+
+@media (max-width: 480px) {
+	.my-ecard-theme-reference {
+		align-items: stretch;
+		min-height: calc(100vh - var(--my-ecard-action-bar-height, 84px));
+		min-height: calc(100dvh - var(--my-ecard-action-bar-height, 84px));
+		padding: 0;
+	}
+
+	.my-ecard-theme-reference__card {
+		max-width: none;
+		min-height: calc(100vh - var(--my-ecard-action-bar-height, 84px));
+		min-height: calc(100dvh - var(--my-ecard-action-bar-height, 84px));
+		border-radius: 0;
+		box-shadow: none;
+	}
+
+	.my-ecard-theme-reference__hero {
+		max-height: 48vh;
+	}
+}
+
+@media (min-width: 900px) {
+	.my-ecard-theme-reference__card {
+		max-width: 440px;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.my-ecard-theme-reference__contact,
+	.my-ecard-theme-reference__social-link {
+		transition: none;
+	}
+
+	.my-ecard-theme-reference__contact:hover,
+	.my-ecard-theme-reference__social-link:hover {
+		transform: none;
+	}
+}

@@ -1,0 +1,35 @@
+services:
+  db:
+    image: mariadb:10.11
+    environment:
+      MARIADB_DATABASE: wordpress
+      MARIADB_USER: wordpress
+      MARIADB_PASSWORD: wordpress
+      MARIADB_ROOT_PASSWORD: rootpass
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  wp:
+    image: wordpress:6.8.2-php8.2-apache
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "8098:80"
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: wordpress
+      WORDPRESS_DB_NAME: wordpress
+      WORDPRESS_DEBUG: 1
+      WORDPRESS_CONFIG_EXTRA: |
+        define('WP_DEBUG_LOG', '/var/www/html/wp-content/debug.log');
+        define('WP_DEBUG_DISPLAY', false);
+    volumes:
+      - ../../dist/wp-ecard-addons.zip:/tmp/wp-ecard-addons.zip:ro
+      - ./clean-install.php:/var/www/html/clean-install.php:ro
+      - ./clean-lifecycle.php:/var/www/html/clean-lifecycle.php:ro
+      - ../../../ecard-digital-visiting-card:/var/www/html/wp-content/plugins/ecard-digital-visiting-card

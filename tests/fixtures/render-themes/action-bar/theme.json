@@ -1,0 +1,8 @@
+{
+    "id": "action-bar",
+    "name": "Action Bar Fixture",
+    "description": "Theme used by the action bar and section rendering tests.",
+    "version": "1.0.0",
+    "requires_plugin": ">=0.1.0",
+    "template": "template.php"
+}
