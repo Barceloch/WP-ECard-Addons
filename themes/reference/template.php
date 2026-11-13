@@ -85,8 +85,39 @@ if ( '' !== $my_ecard_accent && preg_match( '/^#(?:[0-9a-fA-F]{3}){1,2}$/', $my_
 				<?php endif; ?>
 			</div>
 
+			<?php if ( '' !== $my_ecard_card->address ) : ?>
+				<p class="my-ecard-theme-reference__address">
+					<i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+					<span><?php echo nl2br( esc_html( $my_ecard_card->address ) ); ?></span>
+				</p>
+			<?php endif; ?>
+
 			<?php \MyECardExtensions\my_ecard_template_part( 'parts/contacts.php' ); ?>
 			<?php \MyECardExtensions\my_ecard_template_part( 'parts/social.php' ); ?>
+
+			<?php if ( '' !== trim( wp_strip_all_tags( $my_ecard_card->welcome_html ) ) ) : ?>
+				<section class="my-ecard-theme-reference__block my-ecard-theme-reference__welcome" aria-labelledby="my-ecard-reference-welcome">
+					<h2 id="my-ecard-reference-welcome" class="my-ecard-theme-reference__block-title"><?php echo esc_html( $my_ecard_card->headings['welcome'] ); ?></h2>
+					<div class="my-ecard-theme-reference__prose"><?php echo wp_kses_post( $my_ecard_card->welcome_html ); ?></div>
+				</section>
+			<?php endif; ?>
+
+			<?php if ( ! empty( $my_ecard_card->services ) ) : ?>
+				<section class="my-ecard-theme-reference__block my-ecard-theme-reference__services" aria-labelledby="my-ecard-reference-services">
+					<h2 id="my-ecard-reference-services" class="my-ecard-theme-reference__block-title"><?php echo esc_html( $my_ecard_card->headings['services'] ); ?></h2>
+					<ul class="my-ecard-theme-reference__service-list">
+						<?php foreach ( $my_ecard_card->services as $my_ecard_service ) : ?>
+							<li class="my-ecard-theme-reference__service">
+								<span class="my-ecard-theme-reference__service-name"><?php echo esc_html( $my_ecard_service['name'] ); ?></span>
+								<?php if ( '' !== $my_ecard_service['html'] ) : ?>
+									<div class="my-ecard-theme-reference__service-desc"><?php echo wp_kses_post( wpautop( $my_ecard_service['html'] ) ); ?></div>
+								<?php endif; ?>
+							</li>
+						<?php endforeach; ?>
+					</ul>
+				</section>
+			<?php endif; ?>
+
 		</div>
 	</article>
 </div>

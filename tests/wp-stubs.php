@@ -457,6 +457,40 @@ if ( ! function_exists( 'wp_kses_post' ) ) {
 	}
 }
 
+if ( ! function_exists( 'wpautop' ) ) {
+	/**
+	 * Mimic wpautop() closely enough for theme rendering.
+	 *
+	 * @param string $text  Text.
+	 * @param bool   $br    Whether to convert remaining line breaks.
+	 * @return string
+	 */
+	function wpautop( $text, $br = true ) {
+		unset( $br );
+
+		$text = trim( (string) $text );
+
+		if ( '' === $text ) {
+			return '';
+		}
+
+		$paragraphs = preg_split( '/\R\s*\R/', $text );
+		$output     = '';
+
+		foreach ( (array) $paragraphs as $paragraph ) {
+			$paragraph = trim( (string) $paragraph );
+
+			if ( '' === $paragraph ) {
+				continue;
+			}
+
+			$output .= '<p>' . $paragraph . "</p>\n";
+		}
+
+		return $output;
+	}
+}
+
 if ( ! function_exists( 'wp_unslash' ) ) {
 	/**
 	 * Mimic wp_unslash().

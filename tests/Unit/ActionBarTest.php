@@ -307,7 +307,19 @@ final class ActionBarTest extends TestCase {
 
 		$this->assert_true( $protected->is_publicly_viewable );
 		$this->assert_true( $protected->requires_password );
-		$this->assert_same( array(), ActionBar::actions( $protected ) );
+
+		/*
+		 * Actions are computed per action, so a card whose password was not
+		 * satisfied still knows which actions it *has*. Markup is withheld by
+		 * the presentation guard, and URL-dependent actions stay absent.
+		 */
+		$protected_actions = ActionBar::actions( $protected );
+
+		$this->assert_key( 'gallery', $protected_actions );
+		$this->assert_key( 'videos', $protected_actions );
+		$this->assert_false( isset( $protected_actions['vcard'] ) );
+		$this->assert_false( isset( $protected_actions['share'] ) );
+		$this->assert_false( isset( $protected_actions['qr'] ) );
 		$this->assert_same( '', $this->render( $protected ) );
 	}
 

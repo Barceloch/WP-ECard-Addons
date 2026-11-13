@@ -43,6 +43,16 @@ if ( '' !== $card->whatsapp_url ) {
 	);
 }
 
+if ( '' !== $card->website ) {
+	$my_ecard_contacts[] = array(
+		'modifier' => 'website',
+		'url'      => $card->website,
+		'icon'     => 'fa-solid fa-globe',
+		'label'    => __( 'Website', 'wp-ecard-addons' ),
+		'external' => true,
+	);
+}
+
 if ( array() === $my_ecard_contacts ) {
 	return;
 }
@@ -54,6 +64,10 @@ if ( array() === $my_ecard_contacts ) {
 			href="<?php echo esc_url( $my_ecard_contact['url'] ); ?>"
 			aria-label="<?php echo esc_attr( $my_ecard_contact['label'] ); ?>"
 			title="<?php echo esc_attr( $my_ecard_contact['label'] ); ?>"
+			<?php if ( ! empty( $my_ecard_contact['external'] ) ) : ?>
+				target="_blank"
+				rel="noopener noreferrer"
+			<?php endif; ?>
 		>
 			<i class="<?php echo esc_attr( $my_ecard_contact['icon'] ); ?>" aria-hidden="true"></i>
 		</a>

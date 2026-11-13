@@ -406,7 +406,10 @@ final class ReferenceThemeTest extends TestCase {
 		$html = $this->render();
 
 		$this->assert_false( strpos( $html, 'theme-reference__section' ) );
-		$this->assert_false( strpos( $html, '<section' ) );
+		$this->assert_false( strpos( $html, 'theme-reference__gallery' ) );
+		$this->assert_false( strpos( $html, 'theme-reference__video' ) );
+		$this->assert_false( strpos( $html, 'id="my-ecard-gallery"' ) );
+		$this->assert_false( strpos( $html, 'id="my-ecard-videos"' ) );
 		$this->assert_false( strpos( $html, 'Gallery' ) );
 		$this->assert_false( strpos( $html, 'Videos' ) );
 	}
@@ -463,6 +466,88 @@ final class ReferenceThemeTest extends TestCase {
 		$this->assert_contains( 'id="my-ecard-videos-viewer"', $viewers );
 		$this->assert_contains( 'gallery-1-medium.jpg', $viewers );
 		$this->assert_contains( 'youtu.be/abc', $viewers );
+	}
+
+	/**
+	 * Address and website are rendered when ECard provides them.
+	 *
+	 * @return void
+	 */
+	public function test_renders_address_and_website_from_ecard_data(): void {
+		$this->card();
+		$this->configure( self::CARD_ID );
+
+		update_post_meta( self::CARD_ID, '_ecard_address', 'Calle Mayor 1, Madrid' );
+		update_post_meta( self::CARD_ID, '_ecard_website', 'https://example.com' );
+
+		$html = $this->render();
+
+		$this->assert_contains( 'my-ecard-theme-reference__address', $html );
+		$this->assert_contains( 'Calle Mayor 1, Madrid', $html );
+		$this->assert_contains( 'contact--website', $html );
+		$this->assert_contains( 'href="https://example.com"', $html );
+	}
+
+	/**
+	 * The welcome description uses the ECard content and heading.
+	 *
+	 * @return void
+	 */
+	public function test_renders_welcome_description_and_heading(): void {
+		$this->card( array( 'post_content' => 'Additional description about the person.' ) );
+		$this->configure( self::CARD_ID );
+
+		update_post_meta( self::CARD_ID, '_ecard_welcome_heading', 'About' );
+
+		$html = $this->render();
+
+		$this->assert_contains( 'my-ecard-theme-reference__welcome', $html );
+		$this->assert_contains( 'About', $html );
+		$this->assert_contains( 'Additional description about the person.', $html );
+	}
+
+	/**
+	 * Services render name and description from the ECard structure.
+	 *
+	 * @return void
+	 */
+	public function test_renders_services_from_ecard_data(): void {
+		$this->card();
+		$this->configure( self::CARD_ID );
+
+		update_post_meta(
+			self::CARD_ID,
+			'_ecard_services',
+			array(
+				array( 'name' => 'Architecture', 'description' => 'Full service design' ),
+				array( 'name' => 'Interiors', 'description' => 'Residential and retail' ),
+			)
+		);
+
+		$html = $this->render();
+
+		$this->assert_contains( 'my-ecard-theme-reference__services', $html );
+		$this->assert_contains( 'Architecture', $html );
+		$this->assert_contains( 'Full service design', $html );
+		$this->assert_contains( 'Interiors', $html );
+		$this->assert_same( 2, substr_count( $html, 'my-ecard-theme-reference__service-name' ) );
+	}
+
+	/**
+	 * Details stay out of the markup when ECard has no data for them.
+	 *
+	 * @return void
+	 */
+	public function test_omits_details_when_ecard_has_no_data(): void {
+		$this->card( array( 'post_content' => '' ) );
+		$this->configure( self::CARD_ID );
+
+		$html = $this->render();
+
+		$this->assert_false( strpos( $html, 'my-ecard-theme-reference__address' ), 'address block leaked' );
+		$this->assert_false( strpos( $html, 'contact--website' ), 'website contact leaked' );
+		$this->assert_false( strpos( $html, 'my-ecard-theme-reference__welcome' ), 'welcome block leaked' );
+		$this->assert_false( strpos( $html, 'my-ecard-theme-reference__services' ), 'services block leaked' );
 	}
 
 	/**

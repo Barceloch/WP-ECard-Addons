@@ -373,8 +373,8 @@ final class CardSettings {
 				$this->field_checkbox( 'enable_location', __( 'Location', 'wp-ecard-addons' ), '', $values );
 				$this->field_checkbox( 'enable_qr', __( 'QR code', 'wp-ecard-addons' ), '', $values );
 				$this->field_checkbox( 'enable_share', __( 'Share', 'wp-ecard-addons' ), '', $values );
-				$this->field_checkbox( 'enable_gallery', __( 'Gallery', 'wp-ecard-addons' ), __( 'The button appears only when the selected theme renders the my-ecard-gallery section and the card has images.', 'wp-ecard-addons' ), $values );
-				$this->field_checkbox( 'enable_videos', __( 'Videos', 'wp-ecard-addons' ), __( 'The button appears only when the selected theme renders the my-ecard-videos section and the card has videos.', 'wp-ecard-addons' ), $values );
+				$this->field_checkbox( 'enable_gallery', __( 'Gallery', 'wp-ecard-addons' ), __( 'The button appears only when the card has images. Images open in the shared viewer, independently of the theme.', 'wp-ecard-addons' ), $values );
+				$this->field_checkbox( 'enable_videos', __( 'Videos', 'wp-ecard-addons' ), __( 'The button appears only when the card has videos. Videos open in the shared viewer, independently of the theme.', 'wp-ecard-addons' ), $values );
 				?>
 			</div>
 

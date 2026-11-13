@@ -513,7 +513,11 @@ final class CardSettingsTest extends TestCase {
 		$settings->render( $post );
 		$html = (string) ob_get_clean();
 
-		$this->assert_contains( 'my-ecard-gallery', $html );
-		$this->assert_contains( 'my-ecard-videos', $html );
+		/*
+		 * Media availability comes from card data, never from theme sections.
+		 */
+		$this->assert_false( strpos( $html, 'renders the my-ecard-gallery section' ) );
+		$this->assert_false( strpos( $html, 'renders the my-ecard-videos section' ) );
+		$this->assert_contains( 'independently of the theme', $html );
 	}
 }

@@ -39,9 +39,18 @@ final class ActionBar {
 	public static function actions( CardData $card, array $anchors = array() ): array {
 		$actions = array();
 
-		if ( ! VCardGenerator::is_public( $card ) ) {
+		/*
+		 * Every action is gated on its own requirements only. No action may
+		 * remove the bar or hide its siblings: a card without media still gets
+		 * vCard, location, QR and share, and a card without a public URL still
+		 * gets gallery and videos. Availability is never inferred from markup
+		 * the theme renders, so removing in-card sections cannot hide actions.
+		 */
+		if ( ! $card->is_publicly_viewable ) {
 			return $actions;
 		}
+
+		$public = VCardGenerator::is_public( $card );
 
 		$vcard_url = my_ecard_vcard_url( $card );
 
@@ -69,7 +78,7 @@ final class ActionBar {
 			);
 		}
 
-		if ( ! empty( $card->settings['enable_qr'] ) && QRCodeGenerator::is_available() ) {
+		if ( ! empty( $card->settings['enable_qr'] ) && $public && QRCodeGenerator::is_available() ) {
 			$actions['qr'] = array(
 				'type'       => 'button',
 				'label'      => __( 'QR code', 'wp-ecard-addons' ),
@@ -81,7 +90,7 @@ final class ActionBar {
 			);
 		}
 
-		if ( ! empty( $card->settings['enable_share'] ) && '' !== $card->url ) {
+		if ( ! empty( $card->settings['enable_share'] ) && $public && '' !== $card->url ) {
 			$actions['share'] = array(
 				'type'       => 'button',
 				'label'      => __( 'Share', 'wp-ecard-addons' ),
@@ -140,7 +149,11 @@ final class ActionBar {
 			return;
 		}
 
-		if ( ! VCardGenerator::is_public( $card ) ) {
+		/*
+		 * Presentation guard only: a card WordPress would not show, or one whose
+		 * password was not satisfied, must never expose its bar or media.
+		 */
+		if ( ! $card->is_publicly_viewable || $card->requires_password ) {
 			return;
 		}
 

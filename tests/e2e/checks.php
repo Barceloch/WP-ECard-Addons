@@ -216,8 +216,8 @@ my_ecard_check(
 	'metabox QR notice matches renderer availability',
 	QRCodeGenerator::is_available() ? false === $qr_notice : true === $qr_notice
 );
-my_ecard_check( 'metabox describes the gallery requirement', false !== strpos( $html, 'my-ecard-gallery section' ) );
-my_ecard_check( 'metabox describes the videos requirement', false !== strpos( $html, 'my-ecard-videos section' ) );
+my_ecard_check( 'metabox states gallery is independent of the theme', false !== strpos( $html, 'independently of the theme' ) );
+my_ecard_check( 'metabox no longer requires a gallery section', false === strpos( $html, 'my-ecard-gallery section' ) && false === strpos( $html, 'my-ecard-videos section' ) );
 
 /*
  * A stored theme that disappeared must warn and fall back to the default.
