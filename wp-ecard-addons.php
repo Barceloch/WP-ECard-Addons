@@ -3,7 +3,7 @@
  * Plugin Name:       WP ECard Addons
  * Description:       Themes, QR codes, vCard downloads and an action bar for ECard - Digital Visiting Card.
  * Version:           0.1.0
- * Requires at least: 6.8
+ * Requires at least: 6.5
  * Requires PHP:      7.4
  * Author:            Yunior Barceló
  * Author URI:        mailto:barceloch@gmail.com

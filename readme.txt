@@ -1,7 +1,7 @@
 === WP ECard Addons ===
 Contributors: barceloch
 Tags: ecard, digital business card, qr code, vcard, themes
-Requires at least: 6.8
+Requires at least: 6.5
 Tested up to: 6.8.2
 Requires PHP: 7.4
 Stable tag: 0.1.0
@@ -12,7 +12,7 @@ Themes, QR codes, vCard downloads and an action bar for ECard - Digital Visiting
 
 == Requirements ==
 
-* WordPress 6.8 or newer.
+* WordPress 6.5 or newer.
 * PHP 7.4 or newer.
 * ECard - Digital Visiting Card 1.6.x (active).
 * PHP `mbstring` (required by the bundled QR library).
@@ -23,6 +23,9 @@ Themes, QR codes, vCard downloads and an action bar for ECard - Digital Visiting
 
 This release distinguishes what was actually executed from what is only declared.
 
+* WordPress 6.5.12: **executed**. The release ZIP was installed on WordPress 6.5.12
+  with ECard 1.6.0, and the Reference card, the action bar, the QR endpoint and the
+  vCard download were verified without PHP notices.
 * WordPress 6.8.2: **executed**. The end-to-end suite installs and exercises the
   release ZIP on WordPress 6.8.2. This is the version named by `Tested up to`.
 * PHP 8.2: **executed**. The unit and end-to-end suites run on PHP 8.2.
@@ -243,6 +246,7 @@ are preserved under `vendor/chillerlan/*/LICENSE`.
   `wp-ecard-addons`). Stored `_my_ecard_` meta, the `my_ecard_*` PHP API, hooks,
   filters and transients keep their original names, so existing data and
   integrations are unaffected.
+* Minimum WordPress lowered to 6.5, verified on WordPress 6.5.12.
 * Asset cache busting uses the plugin version instead of file timestamps, so a
   release update invalidates browser CSS and JavaScript caches correctly.
 * Addon base: dependency detection, theme registry, per-card settings, CardData.
